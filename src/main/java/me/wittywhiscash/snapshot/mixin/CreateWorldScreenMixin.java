@@ -27,7 +27,6 @@ import java.util.Optional;
 
 @Mixin(CreateWorldScreen.class)
 public abstract class CreateWorldScreenMixin extends Screen {
-
     @Shadow
     @Final
     public WorldCreator worldCreator;
