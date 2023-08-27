@@ -19,7 +19,9 @@ public class Snapshot implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		try {
-			Files.createDirectory(Path.of(MinecraftClient.getInstance().runDirectory.getAbsoluteFile().getPath(), TEMPLATE_DIRECTORY));
+			Path templatePath = Path.of(MinecraftClient.getInstance().runDirectory.getAbsoluteFile().getPath(), TEMPLATE_DIRECTORY);
+			if (Files.notExists(templatePath))
+				Files.createDirectory(templatePath);
 		} catch (IOException e) {
 			LOGGER.error("Failed to create template path", e);
 		}
