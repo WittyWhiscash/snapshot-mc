@@ -8,6 +8,7 @@ import net.minecraft.client.gui.screen.world.WorldCreator;
 import net.minecraft.client.toast.SystemToast;
 import net.minecraft.client.world.GeneratorOptionsHolder;
 import net.minecraft.text.Text;
+import net.minecraft.util.path.SymlinkValidationException;
 import net.minecraft.world.SaveProperties;
 import net.minecraft.world.gen.WorldPresets;
 import net.minecraft.world.level.LevelInfo;
@@ -70,7 +71,7 @@ public abstract class CreateWorldScreenMixin extends Screen {
                 }
 
                 session.close();
-            } catch (IOException e) {
+            } catch (IOException | SymlinkValidationException e) {
                 SystemToast.addWorldAccessFailureToast(this.client, this.worldCreator.getWorldName());
                 Snapshot.LOGGER.error("Failed to rename level " + this.worldCreator.getWorldName(), e);
             }
